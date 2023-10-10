@@ -1,0 +1,30 @@
+
+// B: O(1)   W: O(h)
+
+
+func treeInsert(T : BST, z: Vertex):
+	y = null
+	x = T.root
+	while x != null:
+		y = x
+		if z.key < x.key:
+			x = x.left
+		else:
+			x = x.right
+	
+	z.parent = y
+	if y == null:
+		T.root = z
+	elif z.key < y.key:
+		y.left = z
+	else:
+		y.right = z
+
+/*
+
+1) Начинаем с корня
+2) Если ключ текущего меньше вставляемого идём направо, иначе налево
+3) Если нет больше узлов, вставляем наш
+
+
+*/

@@ -1,0 +1,18 @@
+// W: O(h) B: O(1) ?
+func treeSuccessor(x : Vertex):
+	if x.right != null:
+		return treeMinimum(x.right)
+	
+	y = x.parent
+	while (y != null) and (x == y.right):
+		x = y
+		y = y.parent
+	
+
+	return y
+
+
+/* Если у вершины есть правый ребенок, то возвращаем минимум в поддереве с корнем в ребенке.
+
+Если нет, то пока есть предки вершины, и текущая является правым ребенком, поднимаемся по дереву
+*/

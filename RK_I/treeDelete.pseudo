@@ -1,0 +1,51 @@
+
+// B: O(1)  W: O(h)
+
+func treeDelete(x : Vertex):
+	if x.left and x.right:
+		swapX = treeMinimum(x.right)
+		swap(swapX.key, x.key)
+		_updateParent(swapX, swapX.right)
+		delete swapX
+	
+	elif x.left:
+		newX = x.left
+		_updateParent(x, newX)
+		delete x
+	
+	else if x.right:
+		newX = x.right
+		_moveNode(x, newX)
+		delete x
+	
+	else:
+		_updateParent(x,null)
+		delete x
+
+
+
+
+func _updateParent(x : Vertex, newX: Vertex):
+	if x.parent:
+		if x.parent.left == x:
+			x.parent.left = newX
+		else:
+			x.parent.right = newX
+	
+	if newX:
+		newX.parent = x.parent
+		
+
+
+
+/*
+
+
+находим вершину.
+если у нее нет детей -- то удаляем ее
+если один ребенок -- то он вместо удаляемой
+
+если два -- меняем ее с max из левого (или min из правого) . по утв. об идущих подряд будет либо 1 либо 0 детей. и идем в пункты 0-2
+
+
+*/
